@@ -17,12 +17,12 @@ function fetch_default_report() {
     return fetch("assets/data/default-report.json");
 }
 
-function fetch_regions_from_api() {
+/*function fetch_regions_from_api() {
     // TODO: Add cache functionality
-    return fetch(apiUrl + 'Delbruec/regions?asGeoJSON=True')
+    return fetch(apiUrl + '/regions?asGeoJSON=True')
     return fetch(apiUrl + "/regions?asGeoJSON=True");
 }
-
+*/
 function status(response) {
     if (response.status === 404) {
         console.log(
