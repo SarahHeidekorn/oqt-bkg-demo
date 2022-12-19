@@ -15,8 +15,9 @@ var regions_dict = {1 : "Beirut", 2 : "Brandenburg", 3 : "ChuProngDistrict", 4 :
 
 function fetch_report_from_server(reportName, featureId) {
     const pathToFile = regions_dict[featureId] + "/" + reportName + '.json';
+    const lang = "en"; // make variable
     console.log(pathToFile);
-    return fetch("assets/data/" + pathToFile);
+    return fetch("assets/data/"+lang+"/" + pathToFile);
 }
 
 function fetch_default_report() {
