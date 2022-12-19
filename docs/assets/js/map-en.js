@@ -14,10 +14,10 @@ function fetch_regions_from_server() {
 var regions_dict = {1 : "Beirut", 2 : "Brandenburg", 3 : "ChuProngDistrict", 4 : "Hanoi", 5 : "Ireland", 6 : "Kiambu", 7 : "Kyiv", 8 : "RheinMain", 9 : "TelAviv"}
 
 function fetch_report_from_server(reportName, featureId) {
-    const pathToFile = regions_dict[featureId] + "/" + reportName + '.json';
     const lang = "en"; // make variable
+    const pathToFile = regions_dict[featureId] + "/"+lang+"/" + reportName + '.json';
     console.log(pathToFile);
-    return fetch("assets/data/"+lang+"/" + pathToFile);
+    return fetch("assets/data/" + pathToFile);
 }
 
 function fetch_default_report() {
