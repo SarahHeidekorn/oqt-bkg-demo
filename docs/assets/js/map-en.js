@@ -346,7 +346,8 @@ function buildMap(...charts) {
 
 			// left part with plot
 			const left_space = document.createElement("div");
-			left_space.classList.add("one-third")
+			left_space.classList.add("graphSection")
+			left_space.classList.add("indicator-graph")
 			if (indicator["result"]["label"] === "UNDEFINED") {
 			    left_space.innerHTML = "<p>Plot can't be calculated for this indicator.</p>";
 			} else {
@@ -357,7 +358,8 @@ function buildMap(...charts) {
 
 			// right part with heading, description and traffic lights
 			const right_space = document.createElement("div");
-			right_space.className = "two-thirds";
+			right_space.classList.add("descriptionSection")
+			right_space.classList.add("indicator-text");
 
 			const indicatorHeading = document.createElement("h4");
 			indicatorHeading.innerHTML = indicator["metadata"]["name"] + ' for ' + indicator["layer"]["name"];
