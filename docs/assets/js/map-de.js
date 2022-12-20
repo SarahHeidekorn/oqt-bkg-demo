@@ -575,6 +575,35 @@ function topFunction() {
 function bottomFunction() {
     window.scrollTo(0, document.body.scrollHeight);
 }
+function download(filename, content) {
+
+    //creating an invisible element
+    var element = document.createElement('a');
+    element.setAttribute('href',
+    content);
+    element.setAttribute('download', filename);
+    // Above code is equivalent to
+    // <a href="path of file" download="file name">
+    console.log("here")
+    console.log(element)
+    document.body.appendChild(element);
+
+    //onClick property
+    element.click();
+
+    document.body.removeChild(element);
+}
+
+// Start file download.
+document.getElementById("downloadButton")
+.addEventListener("click", function() {
+    // Generate download of hello.txt
+    // file with some content
+    var content = "assets/data/" + pathToFile;
+    var filename = pathToFile.replace(/\.[^/.]+$/, "") + ".geojson";
+
+    download(filename, content);
+}, false);
 
 function httpGetAsync(theUrl, callback) {
     const xmlHttp = new XMLHttpRequest();
