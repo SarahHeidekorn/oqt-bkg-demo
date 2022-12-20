@@ -529,10 +529,19 @@ footer {
   overflow: hidden;
 }
 .indicator-graph svg {
-  max-width:100%;
+
   position: relative;
   height: auto;
   min-height: 100% !important;
+  transition:transform 0.25s ease;
+}
+
+.indicator-graph:hover {
+    positon: absolute;
+    -webkit-transform:scale(2); /* or some other value */
+    transform:scale(2);
+    position: absolute;
+    z-index: 1;
 }
 
 .miniMap {
