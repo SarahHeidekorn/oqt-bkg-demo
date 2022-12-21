@@ -529,7 +529,7 @@ footer {
   overflow: hidden;
 }
 .indicator-graph svg {
-
+  max-width: 100%;
   position: relative;
   height: auto;
   min-height: 100% !important;
@@ -538,8 +538,8 @@ footer {
 
 .indicator-graph:hover {
     positon: absolute;
-    -webkit-transform:scale(2); /* or some other value */
-    transform:scale(2);
+    -webkit-transform:scale(1.7); /* or some other value */
+    transform:scale(1.7);
     position: absolute;
     z-index: 1;
 }
