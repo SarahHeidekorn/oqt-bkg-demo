@@ -73,7 +73,7 @@
 		<div class="wrapper">
 			<div class="hero-content">
 				<h1 class="hero-heading">BKG OSM-Prüftools</h1>
-				<p class="hero-subheading">Test: Das ist eine Demoversion.</p>
+				<p class="hero-subheading">Das ist eine Demoversion zur Qualitätsabschätzung von OSM Daten.</p>
 			</div>
 		</div>
 	</div>
@@ -90,7 +90,7 @@
 			</div>
 			<div class="rich-text">
 				<!-- ### select area  space ######## -->
-				<h3>1. Wahl einer Region auf der Karte.</h3><p>Klicke auf eine Region, wenn sie rot wird, ist sie ausgewählt.</p>
+				<h3>1. Wahl einer Region auf der Karte.</h3><p>Wählen Sie eine Region. Wenn die Region rot wird, ist sie ausgewählt.</p>
 			</div>
 		</div>
 		<div class="oqtSection-container">
@@ -104,23 +104,38 @@
 				<div class="select">
 					<select class="minimal" id="cardtype"  required>
 						<option value="Report" selected>Qualitätsbericht ...</option>
-						<option value="CompletenessReport">Vollständigkeitsbericht</option>
-						<option value="TemporalAccuracyReport">Zeitlicher Genauigkeitsbericht</option>
-						<option value="ThematicalAccuracyReport">Thematischer Genauigkeitsbericht</option>
-						<option value="LogicalConsistencyReport">Logischer Konsistenzbericht</option>
-						<option value="PositionalAccuracyReport">Positionsgenauigkeitsbericht</option>
+						<option value="CompletenessReport">Vollständig</option>
+						<option value="TemporalAccuracyReport">Datenaktualität</option>
+						<option value="ThematicalAccuracyReport">Thematische Genauigkeit</option>
+						<option value="LogicalConsistencyReport">Logische Konsistenz</option>
+						<option value="PositionalAccuracyReport">Positionsgenauigkeit</option>
 					</select>
 				</div>
 			</div>
 			<div class="one-half center-items">
 			<!-- ### select area  space ######## -->
-				<h3>3. Qualitätsanalyse.</h3>
+				<h3>3. Qualitätseinschätzung.</h3>
 				<div class="button-box">				
-					<button id="gQ" type="submit" class="btn-submit2" >Qualität anfragen</button>
+					<button id="gQ" type="submit" class="btn-submit2" >Bericht anzeigen</button>
 				</div>
 
 			</div>
 		</div>
+		<div class="oqtSection-container oqtSection-flex">
+			<div class="one-half center-items">
+			<!-- ### select area  space ######## -->
+				<h3>Ergebnisse des Vorprojekts.</h3>
+				<div class="select">
+					<select class="minimal" id="cardtype"  required>
+						<option value="Report" selected>Qualitätsabschätzung ...</option>
+						<option value="CompletenessReport">Zeitlicher Verlauf</option>
+						<option value="TemporalAccuracyReport">Vollständigkeit und Aktualität</option>
+						<option value="ThematicalAccuracyReport">Erreichbarkeitsanalyse</option>
+						<option value="LogicalConsistencyReport">Vergleich mit Basis DLM</option>
+						<option value="PositionalAccuracyReport">Höhenangaben</option>
+					</select>
+				</div>
+			</div>
 	</div>
 
     <div id="loader1"></div>
@@ -133,9 +148,9 @@
 			</div>
 		</div>
 		<div class="oqtSection-container">
-			<h3>Datenqualitätsübersicht</h3>
+			<h3>Übersicht Qualitätsabschätzung</h3>
 			<div id="results1" class="middle">
-				<p>Ergebnisse werden hier angezeigt</p>
+				<p>Ergebnisse zur Gesamteinschätzung werden hier angezeigt</p>
 			</div>
 			<div id="loader1"></div>
 		</div>
@@ -151,9 +166,9 @@
 		</div>
 
 		<div class="oqtSection-container">
-			<h3>Datenqualitätsinikatoren</h3>
+			<h3>Prüfmethoden</h3>
 			<div id="results2" class="middle">
-				<p>Ergebnisse werden hier angezeigt</p>
+				<p>Ergebnisse der einzelnen Prüfmethoden werden hier angezeigt</p>
 			</div>
 			<div id="loader2"></div>
 		</div>
