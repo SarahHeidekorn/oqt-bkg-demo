@@ -38,7 +38,13 @@
 		<link type="text/css" rel="stylesheet" href="assets/css/style.css">
 		<link type="text/css" rel="stylesheet" href="assets/css/custom-spinner.css">
 		<script defer src="assets/js/utils.js"></script>
-
+		<script>
+		function show(shown, hidden) {
+		  document.getElementById(shown).style.display='block';
+		  document.getElementById(hidden).style.display='none';
+		  return false;
+		}
+		</script>
 	</head>
 
 	<body class="page-home">
@@ -68,9 +74,8 @@
 			</div>
 		</div>
 	</header>
-	
-	<!-- ### title with blue background space ######## -->
-	<div class="hero-container">
+
+		<div class="hero-container">
 		<div class="wrapper">
 			<div class="hero-content">
 				<h1 class="hero-heading">Quality assessment of OSM data</h1>
@@ -79,13 +84,15 @@
 		</div>
 	</div>
 
-	<!-- Start -->
-	<div class="oqtSection">
+ <div id="Page1">
+
+    <div class="oqtSection">
 		<div class="oqtSection-container">
+			<button type=“submit”><a href="#" onclick="return show('Page2','Page1');">Show quality dimensions</a></button>
 			<div class="poc" style="width:100%;">
 				<p style="color:#CD5C5C; font-size:13px">
-					Please note, this is a demo which is supposed to provide a first overview 
-					of potential use cases for OpenStreetMap related products of the 
+					Please note, this is a demo which is supposed to provide a first overview
+					of potential use cases for OpenStreetMap related products of the
 					Heidelberg Institute for Geoinformation Technology.
 				</p>
 			</div>
@@ -101,7 +108,7 @@
 		<div class="oqtSection-container oqtSection-flex">
 			<div class="one-half center-items">
 			<!-- ### select area  space ######## -->
-				<h3>Option 2a. Choose quality feature.</h3>
+				<h3>Option 2. Choose quality feature.</h3>
 				<div class="select">
 					<select class="minimal" id="cardtype"  required>
 						<option value="Report" selected>Report ...</option>
@@ -115,37 +122,57 @@
 			</div>
 			<div class="one-half center-items">
 			<!-- ### select area  space ######## -->
-				<h3>3a. Run quality assessment.</h3>
-				<div class="button-box">				
+				<h3>3. Run quality assessment.</h3>
+				<div class="button-box">
 					<button id="gQ" type="submit" class="btn-submit2" >Get Quality Report</button>
 				</div>
 
 			</div>
 		</div>
+  </div>
+ </div>
+
+  <div id="Page2" style="display:none">
+	  <div class="oqtSection">
+		<div class="oqtSection-container">
+			<button type=“submit”><a href="#" onclick="return show('Page1','Page2');">Show regions</a></button>
+			<div class="poc" style="width:100%;">
+				<p style="color:#CD5C5C; font-size:13px">
+					Please note, this is a demo which is supposed to provide a first overview
+					of potential use cases for OpenStreetMap related products of the
+					Heidelberg Institute for Geoinformation Technology.
+				</p>
+			</div>
+		</div>
 		<div class="oqtSection-container oqtSection-flex">
 			<div class="one-half center-items">
 			<!-- ### select area  space ######## -->
-				<h3>Option 2b. Choose case study.</h3>
+				<h3>Choose quality dimension.</h3>
 				<div class="select">
 					<select class="minimal" id="cardtype"  required>
 						<option value="Report" selected>Report ...</option>
-						<option value="Zeitlicher Verlauf">Zeitlicher Verlauf</option>
-						<option value="Vollständigkeit und Aktualität">Vollständigkeit und Aktualität</option>
-						<option value="Erreichbarkeitsanalyse">Erreichbarkeitsanalyse</option>
-						<option value="Vergleich mit Basis DLM">Vergleich mit Basis DLM</option>
-						<option value="Höhenangaben">Höhenangaben</option>
+						<option value="CompletenessReport">Completeness Report</option>
+						<option value="TemporalAccuracyReport">Temporal Accuracy Report</option>
+						<option value="ThematicalAccuracyReport">Thematical Accuracy Report</option>
+						<option value="LogicalConsistencyReport">Logical Consistency Report</option>
+						<option value="PositionalAccuracyReport">Positional Accuracy Report</option>
 					</select>
 				</div>
 			</div>
 			<div class="one-half center-items">
 			<!-- ### select area  space ######## -->
-				<h3>3b. Show case study.</h3>
-				<div class="button-box">				
-					<button id="gQ" type="submit" class="btn-submit2" >Get Results</button>
+				<h3>Show results.</h3>
+				<div class="button-box">
+					<button id="gQD" type="submit" class="btn-submit2" >Run</button>
 				</div>
 
 			</div>
-	</div>
+		</div>
+  </div>
+  </div>
+	<!-- ### title with blue background space ######## -->
+
+	<!-- Start -->
 
     <div id="loader1"></div>
     <!-- Section for Results -->

@@ -37,6 +37,13 @@
 		<link type="text/css" rel="stylesheet" href="assets/css/style.css">
 		<link type="text/css" rel="stylesheet" href="assets/css/custom-spinner.css">
 		<script defer src="assets/js/utils.js"></script>
+		<script>
+		function show(shown, hidden) {
+		  document.getElementById(shown).style.display='block';
+		  document.getElementById(hidden).style.display='none';
+		  return false;
+		}
+		</script>
 
 	</head>
 
@@ -79,8 +86,11 @@
 	</div>
 
 	<!-- Start -->
-	<div class="oqtSection">
+		<div id="Page1">
+
+    <div class="oqtSection">
 		<div class="oqtSection-container">
+			<button type=“submit”><a href="#" onclick="return show('Page2','Page1');">Qualitätsdimension</a></button>
 			<div class="poc" style="width:100%;">
 				<p style="color:#CD5C5C; font-size:13px">
 					Bitte beachten Sie, dass dies eine Demo ist, die einen ersten Überblick über
@@ -90,7 +100,7 @@
 			</div>
 			<div class="rich-text">
 				<!-- ### select area  space ######## -->
-				<h3>1. Wahl einer Region auf der Karte.</h3><p>Wählen Sie eine Region. Wenn die Region rot wird, ist sie ausgewählt.</p>
+				<h3>1. Wählen Sie eine Region auf der Karte.</h3><p>Klicken Sie auf den Marker. Wenn er rot wird, ist die Region ausgewählt.</p>
 			</div>
 		</div>
 		<div class="oqtSection-container">
@@ -100,31 +110,7 @@
 		<div class="oqtSection-container oqtSection-flex">
 			<div class="one-half center-items">
 			<!-- ### select area  space ######## -->
-				<h3>2a. Qualitätsmerkmal wählen.</h3>
-				<div class="select">
-					<select class="minimal" id="cardtype"  required>
-						<option value="Report" selected>Qualitätsbericht ...</option>
-						<option value="CompletenessReport">Vollständig</option>
-						<option value="TemporalAccuracyReport">Datenaktualität</option>
-						<option value="ThematicalAccuracyReport">Thematische Genauigkeit</option>
-						<option value="LogicalConsistencyReport">Logische Konsistenz</option>
-						<option value="PositionalAccuracyReport">Positionsgenauigkeit</option>
-					</select>
-				</div>
-			</div>
-			<div class="one-half center-items">
-			<!-- ### select area  space ######## -->
-				<h3>3a. Qualitätsabschätzung.</h3>
-				<div class="button-box">				
-					<button id="gQ" type="submit" class="btn-submit2" >Bericht anzeigen</button>
-				</div>
-
-			</div>
-		</div>
-		<div class="oqtSection-container oqtSection-flex">
-			<div class="one-half center-items">
-			<!-- ### select area  space ######## -->
-				<h3>2b. Fallbeispiel wählen.</h3>
+				<h3>2. Fallbeispiel wählen.</h3>
 				<div class="select">
 					<select class="minimal" id="cardtype"  required>
 						<option value="Report" selected>Qualitätsabschätzung ...</option>
@@ -138,13 +124,55 @@
 			</div>
 			<div class="one-half center-items">
 			<!-- ### select area  space ######## -->
-				<h3>3b. Fallbeispiel anzeigen.</h3>
-				<div class="button-box">				
-					<button id="gQ" type="submit" class="btn-submit2" >Ergebnisse anzeigen</button>
+				<h3>3. Qualitätabschätzung berechnen.</h3>
+				<div class="button-box">
+					<button id="gQ" type="submit" class="btn-submit2" >Datenqualität anzeigen</button>
 				</div>
 
 			</div>
-	</div>
+		</div>
+  </div>
+ </div>
+
+  <div id="Page2" style="display:none">
+	  <div class="oqtSection">
+		<div class="oqtSection-container">
+			<button type=“submit”><a href="#" onclick="return show('Page1','Page2');">Region wählen</a></button>
+			<div class="poc" style="width:100%;">
+				<p style="color:#CD5C5C; font-size:13px">
+					Bitte beachten Sie, dass dies eine Demo ist, die einen ersten Überblick über
+					über mögliche Anwendungsfälle für OpenStreetMap-bezogene Produkte des
+					Heidelberger Instituts für Geoinformationstechnologie geben soll.
+				</p>
+			</div>
+		</div>
+		<div class="oqtSection-container oqtSection-flex">
+			<div class="one-half center-items">
+			<!-- ### select area  space ######## -->
+				<h3>Fallbeispiel wählen.</h3>
+				<div class="select">
+					<select class="minimal" id="cardtype"  required>
+						<option value="Report" selected>Qualitätsabschätzung ...</option>
+						<option value="CompletenessReport">Zeitlicher Verlauf</option>
+						<option value="TemporalAccuracyReport">Vollständigkeit und Aktualität</option>
+						<option value="ThematicalAccuracyReport">Erreichbarkeitsanalyse</option>
+						<option value="LogicalConsistencyReport">Vergleich mit Basis DLM</option>
+						<option value="PositionalAccuracyReport">Höhenangaben</option>
+					</select>
+				</div>
+			</div>
+			<div class="one-half center-items">
+			<!-- ### select area  space ######## -->
+				<h3>Show results.</h3>
+				<div class="button-box">
+					<button id="gQD" type="submit" class="btn-submit2" >Starten</button>
+				</div>
+
+			</div>
+		</div>
+  </div>
+  </div>
+
 
     <div id="loader1"></div>
     <!-- Section for Results -->
@@ -185,7 +213,7 @@
 
 		<div class="oqtSection-container">
 			<div class="buttons2">
-				<button class="btn-submit" onclick="topFunction()" id="topButton" title="Go to top">Back to top</button>
+				<button class="btn-submit" onclick="topFunction()" id="topButton" title="Go to top">Zum Seitenanfang zurück</button>
 			</div>
 		</div>
 	</div>
