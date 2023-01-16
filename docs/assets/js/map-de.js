@@ -11,7 +11,7 @@ function fetch_regions_from_server() {
     return fetch("assets/data/regions.geojson");
 }
 
-var regions_dict = {1 : "Beirut", 2 : "Brandenburg", 3 : "ChuProngDistrict", 4 : "Hanoi", 5 : "Ireland", 6 : "Kiambu", 7 : "Kyiv", 8 : "RheinMain", 9 : "TelAviv"}
+var regions_dict = {1 : "Beirut", 2 : "Brandenburg", 3 : "ChuProngDistrict", 4 : "Hanoi", 5 : "Ireland", 6 : "Kiambu", 7 : "Kyiv", 8 : "RheinMain", 9 : "TelAviv",10 : "Leipzig"}
 
 function fetch_report_from_server(reportName, featureId) {
     const lang = "de"; // make variable
