@@ -21,8 +21,8 @@ function fetch_report_from_server(reportName, featureId) {
     return fetch("assets/data/" + pathToFile);
 }
 
-function get_quality_dimension(reportName) {
-    return fetch("assets/data/Kyiv/en/CompletenessReport.json");
+function get_quality_dimension(caseStudy) {
+    return fetch("assets/data/CaseStudies/en/" + caseStudy + ".json");
 }
 
 function fetch_default_report() {
@@ -221,7 +221,6 @@ function buildMap(...charts) {
     document.getElementById("gQ").onclick = function () {
         html_params = get_html_parameter_list(location.search);
         const report = document.getElementById("cardtype");
-
         let areas;
         if (html_params["id"] !== undefined) {
             areas = parseInt(html_params["id"]);
@@ -273,19 +272,9 @@ function buildMap(...charts) {
     }; // getQuality Button click ends
 
     document.getElementById("gQD").onclick = function () {
-        html_params = get_html_parameter_list(location.search);
-        const report = document.getElementById("cardtype");
+        var sel = document.getElementById("cardtype2");
+        var caseStudy = sel.options[sel.selectedIndex].value;
 
-        let selectedReport;
-        if (
-            html_params["report"] !== undefined &&
-            report_isValid(html_params["report"])
-        ) {
-            selectedReport = html_params["report"];
-            report.value = selectedReport;
-        } else {
-            selectedReport = report.options[report.selectedIndex].value;
-        }
 
             toggle_results_will_be_shown_paragraph(true)
             // show loader spinner
@@ -296,7 +285,7 @@ function buildMap(...charts) {
 
             // httpPostAsync(JSON.stringify(params), handleGetQuality);
 
-            Promise.all([get_quality_dimension().then(reportStatus).then(json).then(handleGetQuality)]);
+            Promise.all([get_quality_dimension(caseStudy).then(reportStatus).then(json).then(handleGetQuality)]);
 
         // when params were sent, get pdf button turns blue
         changeColor();
