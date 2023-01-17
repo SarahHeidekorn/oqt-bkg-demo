@@ -324,11 +324,10 @@ function buildMap(...charts) {
 		        traffic_lights = UNDEFINED_QUALITY;
 		        break;
 		}
-
-		document.getElementById("traffic_dots_space").innerHTML =
+                    // here place to display the name of the region?
+        document.getElementById("traffic_dots_space").innerHTML =
 		            '<h4>Report: '+ report["metadata"]["name"] + '</h4>' +
 		            '<p>' + traffic_lights + '</p>'
-                    // here place to display the name of the region?
 
 
 		// ' <b>Overall value: '+ response.result.value + '</b></p>'
@@ -384,8 +383,13 @@ function buildMap(...charts) {
 			right_space.classList.add("descriptionSection")
 			right_space.classList.add("indicator-text");
 
+            console.log(indicator)
 			const indicatorHeading = document.createElement("h4");
-			indicatorHeading.innerHTML = indicator["metadata"]["name"] + ' for ' + indicator["layer"]["name"];
+			if ("region" in indicator["metadata"]){
+			    indicatorHeading.innerHTML = indicator["metadata"]["name"] + ' for ' + indicator["layer"]["name"] + ' in ' + indicator["metadata"]["region"];
+			} else {
+			    indicatorHeading.innerHTML = indicator["metadata"]["name"] + ' for ' + indicator["layer"]["name"];
+			}
 			right_space.appendChild(indicatorHeading);
 
 			const indicatorQuality = document.createElement("p");
