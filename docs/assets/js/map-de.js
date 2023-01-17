@@ -23,7 +23,8 @@ function fetch_report_from_server(reportName, featureId) {
 
 function get_quality_dimension(caseStudy) {
 //TODO: download path for quality dimensions
-    return fetch("assets/data/CaseStudies/de/" + caseStudy + ".json");
+    window.pathToFile = "CaseStudies/de/" + caseStudy + ".json"
+    return fetch("assets/data/" + pathToFile);
     }
 
 function fetch_default_report() {
@@ -609,8 +610,6 @@ function download(filename, content) {
     element.setAttribute('download', filename);
     // Above code is equivalent to
     // <a href="path of file" download="file name">
-    console.log("here")
-    console.log(element)
     document.body.appendChild(element);
 
     //onClick property
