@@ -388,7 +388,11 @@ function buildMap(...charts) {
 			right_space.classList.add("indicator-text");
 
 			const indicatorHeading = document.createElement("h4");
-			indicatorHeading.innerHTML = indicator["metadata"]["name"] + ' for ' + indicator["layer"]["name"];
+            if ("region" in indicator["metadata"]){
+			    indicatorHeading.innerHTML = indicator["metadata"]["name"] + ' for ' + indicator["layer"]["name"] + ' in ' + indicator["metadata"]["region"];
+			} else {
+			    indicatorHeading.innerHTML = indicator["metadata"]["name"] + ' for ' + indicator["layer"]["name"];
+			    }
 			right_space.appendChild(indicatorHeading);
 
 			const indicatorQuality = document.createElement("p");
