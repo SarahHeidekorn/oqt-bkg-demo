@@ -11,11 +11,17 @@ function fetch_regions_from_server() {
     return fetch("assets/data/regions.geojson");
 }
 
-var regions_dict = {1 : "Beirut", 2 : "Brandenburg", 3 : "ChuProngDistrict", 4 : "Hanoi", 5 : "Ireland", 6 : "Kiambu", 7 : "Kyiv", 8 : "RheinMain", 9 : "TelAviv"}
+var regions_dict = {1 : "Beirut", 2 : "Brandenburg", 3 : "ChuProngDistrict", 4 : "Hanoi", 5 : "Ireland", 6 : "Kiambu", 7 : "Kyiv", 8 : "RheinMain", 9 : "TelAviv", 10 : "Leipzig"}
 
 function fetch_report_from_server(reportName, featureId) {
-    const pathToFile = regions_dict[featureId] + "/" + reportName + '.json';
-    console.log(pathToFile);
+    const lang = "en"; // make variable
+    window.regionName = regions_dict[featureId]
+    window.pathToFile = regionName+ "/"+lang+"/" + reportName + '.json';
+    return fetch("assets/data/" + pathToFile);
+}
+
+function get_quality_dimension(caseStudy) {
+    window.pathToFile = "CaseStudies/en/" + caseStudy + ".json"
     return fetch("assets/data/" + pathToFile);
 }
 
@@ -215,7 +221,6 @@ function buildMap(...charts) {
     document.getElementById("gQ").onclick = function () {
         html_params = get_html_parameter_list(location.search);
         const report = document.getElementById("cardtype");
-
         let areas;
         if (html_params["id"] !== undefined) {
             areas = parseInt(html_params["id"]);
@@ -266,6 +271,26 @@ function buildMap(...charts) {
         changeColor();
     }; // getQuality Button click ends
 
+    document.getElementById("gQD").onclick = function () {
+        var sel = document.getElementById("cardtype2");
+        var caseStudy = sel.options[sel.selectedIndex].value;
+
+
+            toggle_results_will_be_shown_paragraph(true)
+            // show loader spinner
+            document.querySelector("#loader1").classList.add("spinner-1");
+            // remove dynamically created Indicator divs
+			removeIndicators()
+            // remove selected feature from map
+
+            // httpPostAsync(JSON.stringify(params), handleGetQuality);
+
+            Promise.all([get_quality_dimension(caseStudy).then(reportStatus).then(json).then(handleGetQuality)]);
+
+        // when params were sent, get pdf button turns blue
+        changeColor();
+    }; // getQuality Button click ends
+
     function handleGetQuality(response) {
         console.log("response", response);
         const properties = response["properties"];
@@ -283,7 +308,6 @@ function buildMap(...charts) {
         //     alert("Couldn't create report.");
         // }
         // show selected region on a map
-		addMiniMap();
 		// 1=green, 2=yellow, 3=red
 		let traffic_lights;
 		switch (report["result"]["label"]) {
@@ -300,11 +324,10 @@ function buildMap(...charts) {
 		        traffic_lights = UNDEFINED_QUALITY;
 		        break;
 		}
-
-		document.getElementById("traffic_dots_space").innerHTML =
+                    // here place to display the name of the region?
+        document.getElementById("traffic_dots_space").innerHTML =
 		            '<h4>Report: '+ report["metadata"]["name"] + '</h4>' +
 		            '<p>' + traffic_lights + '</p>'
-                    // here place to display the name of the region?
 
 
 		// ' <b>Overall value: '+ response.result.value + '</b></p>'
@@ -345,7 +368,8 @@ function buildMap(...charts) {
 
 			// left part with plot
 			const left_space = document.createElement("div");
-			left_space.classList.add("one-third")
+			left_space.classList.add("graphSection")
+			left_space.classList.add("indicator-graph")
 			if (indicator["result"]["label"] === "UNDEFINED") {
 			    left_space.innerHTML = "<p>Plot can't be calculated for this indicator.</p>";
 			} else {
@@ -356,10 +380,16 @@ function buildMap(...charts) {
 
 			// right part with heading, description and traffic lights
 			const right_space = document.createElement("div");
-			right_space.className = "two-thirds";
+			right_space.classList.add("descriptionSection")
+			right_space.classList.add("indicator-text");
 
+            console.log(indicator)
 			const indicatorHeading = document.createElement("h4");
-			indicatorHeading.innerHTML = indicator["metadata"]["name"] + ' for ' + indicator["layer"]["name"];
+			if ("region" in indicator["metadata"]){
+			    indicatorHeading.innerHTML = indicator["metadata"]["name"] + ' for ' + indicator["layer"]["name"] + ' in ' + indicator["metadata"]["region"];
+			} else {
+			    indicatorHeading.innerHTML = indicator["metadata"]["name"] + ' for ' + indicator["layer"]["name"];
+			}
 			right_space.appendChild(indicatorHeading);
 
 			const indicatorQuality = document.createElement("p");
@@ -572,6 +602,34 @@ function topFunction() {
 function bottomFunction() {
     window.scrollTo(0, document.body.scrollHeight);
 }
+function download(filename, content) {
+
+    //creating an invisible element
+    var element = document.createElement('a');
+    element.setAttribute('href',
+    content);
+    element.setAttribute('download', filename);
+    // Above code is equivalent to
+    // <a href="path of file" download="file name">
+
+    document.body.appendChild(element);
+
+    //onClick property
+    element.click();
+
+    document.body.removeChild(element);
+}
+
+// Start file download.
+document.getElementById("downloadButton")
+.addEventListener("click", function() {
+    // Generate download of hello.txt
+    // file with some content
+    var content = "assets/data/" + pathToFile;
+    var filename = pathToFile.replace(/\.[^/.]+$/, "") + ".geojson";
+
+    download(filename, content);
+}, false);
 
 function httpGetAsync(theUrl, callback) {
     const xmlHttp = new XMLHttpRequest();

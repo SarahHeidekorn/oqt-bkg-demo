@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en">
 
@@ -37,7 +38,13 @@
 		<link type="text/css" rel="stylesheet" href="assets/css/style.css">
 		<link type="text/css" rel="stylesheet" href="assets/css/custom-spinner.css">
 		<script defer src="assets/js/utils.js"></script>
-
+		<script>
+		function show(shown, hidden) {
+		  document.getElementById(shown).style.display='block';
+		  document.getElementById(hidden).style.display='none';
+		  return false;
+		}
+		</script>
 	</head>
 
 	<body class="page-home">
@@ -52,6 +59,7 @@
 				<nav class="nav-menu" role="navigation">
 					<a class="navlink active" href="index.html" id="index_1">Home</a>
 					<a class="navlink" href="about.html" id="terminology_1">About</a>
+					<a class="navlink" href="index_de.html" id="terminology_2">Deutsch</a>
 				</nav>
 				<div class="drop-nav">
 					<input type="checkbox" id="anim-menu">
@@ -66,26 +74,26 @@
 			</div>
 		</div>
 	</header>
-	
-	<!-- ### title with blue background space ######## -->
-	<div class="hero-container">
+
+		<div class="hero-container">
 		<div class="wrapper">
 			<div class="hero-content">
-				<h1 class="hero-heading">BKG OSM Prüftools</h1>
-				<p class="hero-subheading">Test: Das ist eine Demoversion.</p>
+				<h1 class="hero-heading">Quality assessment of OSM data</h1>
+				<p class="hero-subheading">Pre-project demo version.</p>
 			</div>
 		</div>
 	</div>
 
-	<!-- Start -->
-	<div class="oqtSection">
+ <div id="Page1">
+
+    <div class="oqtSection">
 		<div class="oqtSection-container">
+			<button type=“submit”><a href="#" onclick="return show('Page2','Page1');">Show quality dimensions</a></button>
 			<div class="poc" style="width:100%;">
 				<p style="color:#CD5C5C; font-size:13px">
-					Please note, this is a proof of concept implementation of the OQT,
-					we are constantly working on enhancements
-					(e.g. further indicators, being able to customize
-					the weighting of the different indicators, processing bigger or customized areas of interest).
+					Please note, this is a demo which is supposed to provide a first overview
+					of potential use cases for OpenStreetMap related products of the
+					Heidelberg Institute for Geoinformation Technology.
 				</p>
 			</div>
 			<div class="rich-text">
@@ -100,7 +108,7 @@
 		<div class="oqtSection-container oqtSection-flex">
 			<div class="one-half center-items">
 			<!-- ### select area  space ######## -->
-				<h3>2. Choose data quality report.</h3>
+				<h3>Option 2. Choose quality feature.</h3>
 				<div class="select">
 					<select class="minimal" id="cardtype"  required>
 						<option value="Report" selected>Report ...</option>
@@ -114,14 +122,57 @@
 			</div>
 			<div class="one-half center-items">
 			<!-- ### select area  space ######## -->
-				<h3>3. Run analysis.</h3>
-				<div class="button-box">				
+				<h3>3. Run quality assessment.</h3>
+				<div class="button-box">
 					<button id="gQ" type="submit" class="btn-submit2" >Get Quality Report</button>
 				</div>
 
 			</div>
 		</div>
-	</div>
+  </div>
+ </div>
+
+  <div id="Page2" style="display:none">
+	  <div class="oqtSection">
+		<div class="oqtSection-container">
+			<button type=“submit”><a href="#" onclick="return show('Page1','Page2');">Show regions</a></button>
+			<div class="poc" style="width:100%;">
+				<p style="color:#CD5C5C; font-size:13px">
+					Please note, this is a demo which is supposed to provide a first overview
+					of potential use cases for OpenStreetMap related products of the
+					Heidelberg Institute for Geoinformation Technology.
+				</p>
+			</div>
+		</div>
+		<div class="oqtSection-container oqtSection-flex">
+			<div class="one-half center-items">
+			<!-- ### select area  space ######## -->
+				<h3>Choose quality dimension.</h3>
+				<div class="select">
+					<select class="minimal" id="cardtype2"  required>
+						<option value="Report" selected>Report ...</option>
+						<option value="Comparison Basis DLM">Comparison with Basis-DLM</option>
+						<option value="Comparison elevation">Elevation Comparison</option>
+						<option value="Completeness and Currentness">Completeness and Currentness</option>
+						<option value="Reachability">Reachability Analysis</option>
+						<option value="Temporal Evolution">Temporal Evolution in OSM</option>
+					</select>
+				</div>
+			</div>
+			<div class="one-half center-items">
+			<!-- ### select area  space ######## -->
+				<h3>Show results.</h3>
+				<div class="button-box">
+					<button id="gQD" type="submit" class="btn-submit2" >Run</button>
+				</div>
+
+			</div>
+		</div>
+  </div>
+  </div>
+	<!-- ### title with blue background space ######## -->
+
+	<!-- Start -->
 
     <div id="loader1"></div>
     <!-- Section for Results -->
@@ -163,6 +214,9 @@
 		<div class="oqtSection-container">
 			<div class="buttons2">
 				<button class="btn-submit" onclick="topFunction()" id="topButton" title="Go to top">Back to top</button>
+			</div>
+			<div class="buttons3">
+				<button class="btn-submit" id="downloadButton" title="Download">Download</button>
 			</div>
 		</div>
 	</div>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+	<head>
+	  <title>ohsome quality analyst</title>
+
+	  <!-- Start Component -->
+	  <meta charset="utf-8">
+
+		<meta name="description" content="">
+		<meta property="og:title" content="">
+		<meta property="og:description" content="">
+		<meta property="og:image" content="">
+		<meta name="twitter:card" content="summary">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="generator" content="Webflow">
+
+
+		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon/favicon-32x32.png">
+		<link rel="apple-touch-icon" href="">
+
+		<link rel="canonical" href="">
+
+		<!-- Add leaflet css -->
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+		integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+		crossorigin="" />
+
+		<!-- Make sure you put this AFTER Leaflet's CSS -->
+		<script defer src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+		integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+		crossorigin=""></script>
+	
+		<!-- Add custom css and js-->
+		<link type="text/css" rel="stylesheet" href="assets/css/style.css">
+		<link type="text/css" rel="stylesheet" href="assets/css/custom-spinner.css">
+		<script defer src="assets/js/utils.js"></script>
+		<script>
+		function show(shown, hidden) {
+		  document.getElementById(shown).style.display='block';
+		  document.getElementById(hidden).style.display='none';
+		  return false;
+		}
+		</script>
+
+	</head>
+
+	<body class="page-home">
+
+    <!-- ### header navbar space ######## -->
+    <header>
+		<div class="wrapper">
+			<div class="container">
+				<a class="oqt-logo" href="index_de.html">
+					<img class="logo" src="assets/img/logos/oqt_logo.png" alt="Logo 'ohsome quality analyst' in a red-gray color schema with the trailing 't' stretched as axis and a random graph within them">
+				</a>
+				<nav class="nav-menu" role="navigation">
+					<a class="navlink active" href="index_de.html" id="index_1">Home</a>
+					<a class="navlink" href="about_de.html" id="terminology_1">About</a>
+					<a class="navlink" href="index.html" id="terminology_2">English</a>
+				</nav>
+				<div class="drop-nav">
+					<input type="checkbox" id="anim-menu">
+					<label for="anim-menu" class="anim-icon">
+							<div class="anim-menu"></div>
+					</label>
+					<div class="anim-nav">
+						<a href="index.html" class="navlink">Home</a>
+						<a href="about.html" class="navlink">About</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	
+	<!-- ### title with blue background space ######## -->
+	<div class="hero-container">
+		<div class="wrapper">
+			<div class="hero-content">
+				<h1 class="hero-heading">BKG OSM-Prüftools</h1>
+				<p class="hero-subheading">Das ist eine Demoversion zur Qualitätsabschätzung von OSM Daten.</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Start -->
+		<div id="Page1">
+
+    <div class="oqtSection">
+		<div class="oqtSection-container">
+			<button type=“submit”><a href="#" onclick="return show('Page2','Page1');">Qualitätsdimension wählen</a></button>
+			<div class="poc" style="width:100%;">
+				<p style="color:#CD5C5C; font-size:13px">
+					Bitte beachten Sie, dass dies eine Demo ist, die einen ersten Überblick über
+					über mögliche Anwendungsfälle für OpenStreetMap-bezogene Produkte des
+					Heidelberger Instituts für Geoinformationstechnologie geben soll.
+				</p>
+			</div>
+			<div class="rich-text">
+				<!-- ### select area  space ######## -->
+				<h3>1. Wählen Sie eine Region auf der Karte.</h3><p>Klicken Sie auf den Marker. Wenn er rot wird, ist die Region ausgewählt.</p>
+			</div>
+		</div>
+		<div class="oqtSection-container">
+			<div  class="map" id="map" style="width: 100%; height:300px; border: 1px solid #AAA;"></div>
+			<div  id="mapCheck" style="display:none;">id</div>
+		</div>
+		<div class="oqtSection-container oqtSection-flex">
+			<div class="one-half center-items">
+			<!-- ### select area  space ######## -->
+				<h3>2. Fallbeispiel wählen.</h3>
+				<div class="select">
+					<select class="minimal" id="cardtype"  required>
+						<option value="Report" selected>Qualitätsabschätzung ...</option>
+						<option value="CompletenessReport">Zeitlicher Verlauf</option>
+						<option value="TemporalAccuracyReport">Vollständigkeit und Aktualität</option>
+						<option value="ThematicalAccuracyReport">Erreichbarkeitsanalyse</option>
+						<option value="LogicalConsistencyReport">Vergleich mit Basis DLM</option>
+						<option value="PositionalAccuracyReport">Höhenangaben</option>
+					</select>
+				</div>
+			</div>
+			<div class="one-half center-items">
+			<!-- ### select area  space ######## -->
+				<h3>3. Qualitätabschätzung berechnen.</h3>
+				<div class="button-box">
+					<button id="gQ" type="submit" class="btn-submit2" >Datenqualität anzeigen</button>
+				</div>
+
+			</div>
+		</div>
+  </div>
+ </div>
+
+  <div id="Page2" style="display:none">
+	  <div class="oqtSection">
+		<div class="oqtSection-container">
+			<button type=“submit”><a href="#" onclick="return show('Page1','Page2');">Region wählen</a></button>
+			<div class="poc" style="width:100%;">
+				<p style="color:#CD5C5C; font-size:13px">
+					Bitte beachten Sie, dass dies eine Demo ist, die einen ersten Überblick über
+					über mögliche Anwendungsfälle für OpenStreetMap-bezogene Produkte des
+					Heidelberger Instituts für Geoinformationstechnologie geben soll.
+				</p>
+			</div>
+		</div>
+		<div class="oqtSection-container oqtSection-flex">
+			<div class="one-half center-items">
+			<!-- ### select area  space ######## -->
+				<h3>Fallbeispiel wählen.</h3>
+				<div class="select">
+					<select class="minimal" id="cardtype2"  required>
+						<option value="Report" selected>Qualitätsdimension ...</option>
+						<option value="Comparison Basis DLM">Vergleich mit Basis-DLM</option>
+						<option value="Comparison elevation">Höhenvergleich</option>
+						<option value="Completeness and Currentness">Vollständigkeit und Aktualität</option>
+						<option value="Reachability">Erreichbarkeitsanalyse</option>
+						<option value="Temporal Evolution">Zeitliche Entwicklung in OSM</option>
+					</select>
+				</div>
+			</div>
+			<div class="one-half center-items">
+			<!-- ### select area  space ######## -->
+				<h3>Ergebnisse anzeigen.</h3>
+				<div class="button-box">
+					<button id="gQD" type="submit" class="btn-submit2" >Starten</button>
+				</div>
+
+			</div>
+		</div>
+  </div>
+  </div>
+
+
+    <div id="loader1"></div>
+    <!-- Section for Results -->
+	<div id="resultSection" class="oqtSection light-blue">
+		<div class="oqtSection-container">
+			<div class="rich-text">
+			<!-- ### select area  space ######## -->
+				<h2 id="result-heading">Ergebnisse</h2>
+			</div>
+		</div>
+		<div class="oqtSection-container">
+			<h3>Übersicht Qualitätsabschätzung</h3>
+			<div id="results1" class="middle">
+				<p>Ergebnisse zur Gesamteinschätzung werden hier angezeigt</p>
+			</div>
+			<div id="loader1"></div>
+		</div>
+		<div class="oqtSection-container oqtSection-flex">
+			<div class="one-third">
+				<div id="traffic_map_space" style="height: 250px; padding:10px;"></div>
+			</div>
+			<div class="two-thirds">
+				<div id="traffic_dots_space"></div>
+				<div id="traffic_text_space"></div>
+				<div id="report_metadata_space"></div>
+			</div>
+		</div>
+
+		<div class="oqtSection-container">
+			<h3>Prüfmethoden</h3>
+			<div id="results2" class="middle">
+				<p>Ergebnisse der einzelnen Prüfmethoden werden hier angezeigt</p>
+			</div>
+			<div id="loader2"></div>
+		</div>
+		<div id="indicatorSpace">
+		</div>
+
+		<div class="oqtSection-container">
+			<div class="buttons2">
+				<button class="btn-submit" onclick="topFunction()" id="topButton" title="Go to top">Zum Seitenanfang zurück</button>
+			</div>
+			<div class="buttons3">
+				<button class="btn-submit" id="downloadButton" title="Download">Download</button>
+			</div>
+		</div>
+	</div>
+	<!-- End  -->
+	<!-- ################ footer ######## -->
+	<footer>
+		<div class="wrapper"  >
+			<div class="container">
+			<div class="footer-column">
+				<a id="language"  href="https://heigit.org/de/kontakt/" class="navlink">Kontakt</a>
+				<a href="https://heigit.org/de/datenschutzerklaerung/" class="navlink">Datenschutz</a>
+				<a href="https://heigit.org/de/impressum/" class="navlink">Impressum</a>
+			</div>
+			<div class="footer-column heigit-logo">
+				<a href="https://heigit.org/de/willkommen/">
+					<img src="/assets/img/logos/heigit_logo.png" alt="HeiGIT Logo">
+				</a>
+			</div>
+			<div class="footer-column last-footer">
+				<p>Copyright © <span id="year">2022</span> HeiGIT </p>
+			</div>
+			</div>
+		</div>
+	</footer>
+
+	<script src="assets/js/api-url.js"></script>
+	<script defer src="assets/js/map-de.js"></script>
+	</body>
+
+</html>
